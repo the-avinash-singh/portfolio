@@ -5,26 +5,23 @@ import { MdPhone } from "react-icons/md";
 import { PiBagFill } from "react-icons/pi";
 import { FaLock } from "react-icons/fa6";
 import "../stylesheets/signin.css";
-import signimg from "../assets/signimg.jpg";
+import signimg from "../assets/signimg.svg";
 import { NavLink } from "react-router-dom";
 
 const Signin = () => {
   return (
-    <>
-      <section className="mx-auto shadow mt-5 rounded w-50">
-        <div className="d-flex  align-items-center">
+    <div className="d-flex justify-content-center align-items-center">
+      <section className="card shadow rounded-4 w-50">
+        <h2 className="p-3 m-4">SignUp</h2>
+        <div className="d-lg-flex justify-content-center align-items-center">
           <div className="w-50">
-            <h2 className="p-3 m-4">SignUp</h2>
-            <form
-              id="signup-form"
-              className="pb-2 w-100"
-            >
-              <div className="ms-5">
+            <form id="signup-form" className="pb-2 mx-3 w-100 d-grid g-5">
+              <div className="mb-3 w-100">
                 <label htmlFor="name" className="mx-3">
                   <FaUser />
                 </label>
                 <input
-                  className="border border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  className="border w-75 border-black border-end-0 border-start-0 border-top-0 fs-5"
                   type="text"
                   name="name"
                   id="name"
@@ -32,12 +29,12 @@ const Signin = () => {
                   placeholder="Name"
                 />
               </div>
-              <div className="ms-5">
+              <div className="mb-3 w-100">
                 <label htmlFor="email" className="mx-3">
                   <MdEmail />
                 </label>
                 <input
-                  className="border border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  className="border w-75 border-black border-end-0 border-start-0 border-top-0 fs-5"
                   type="email"
                   name="email"
                   id="email"
@@ -45,12 +42,12 @@ const Signin = () => {
                   placeholder="Email"
                 />
               </div>
-              <div className="ms-5">
+              <div className="mb-3 w-100">
                 <label htmlFor="phone" className="mx-3">
                   <MdPhone />
                 </label>
                 <input
-                  className="border border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  className="border w-75 border-black border-end-0 border-start-0 border-top-0 fs-5"
                   type="number"
                   name="phone"
                   id="phone"
@@ -58,12 +55,12 @@ const Signin = () => {
                   placeholder="Phone"
                 />
               </div>
-              <div className="ms-5">
+              <div className="mb-3 w-100">
                 <label htmlFor="work" className="mx-3">
                   <PiBagFill />
                 </label>
                 <input
-                  className="border border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  className="border w-75 border-black border-end-0 border-start-0 border-top-0 fs-5"
                   type="text"
                   name="work"
                   id="work"
@@ -71,52 +68,52 @@ const Signin = () => {
                   placeholder="Profession"
                 />
               </div>
-              <div className="ms-5">
+              <div className="mb-3 w-100">
                 <label htmlFor="password" className="mx-3">
                   <FaLock />
                 </label>
                 <input
-                  className="border border-black border-end-0 border-start-0 border-top-0 fs-5"
-                  type="text"
+                  className="border w-75 border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  type="password"
                   name="password"
                   id="password"
                   autoComplete="off"
                   placeholder="Password"
                 />
               </div>
-              <div className="ms-5">
-                <label htmlFor="cpassword" className="ms-3">
+              <div className="mb-3 w-100">
+                <label htmlFor="cpassword" className="mx-3">
                   <FaLock />
                 </label>
                 <input
-                  className="border border-black border-end-0 border-start-0 border-top-0 fs-5"
-                  type="text"
+                  className="border w-75 border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  type="password"
                   name="cpassword"
                   id="cpassword"
                   autoComplete="off"
                   placeholder="Confirm Password"
                 />
               </div>
-              <div className="m-5">
+              <div className="m-4">
                 <input
                   type="submit"
                   name="signup"
                   id="signup"
-                  className="btn text-white fw-bolder p-x-3 ms-3 btn-outline-none btn-info"
+                  className="btn text-white fw-bolder px-3 btn-outline-none btn-info"
                   value="SignUp"
                 />
               </div>
             </form>
           </div>
-          <div className="text-center w-50">
-            <img src={signimg} alt="img" className="w-75" />
+          <div className="w-50 text-center d-none d-lg-inline">
+            <img src={signimg} alt="img" className="img" />
             <div>
-              already have a account<NavLink to="/login">login</NavLink>?
+              Already have an account? <NavLink to="/login">Login</NavLink>
             </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
