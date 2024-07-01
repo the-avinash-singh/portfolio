@@ -1,3 +1,10 @@
+.parent{
+    position: relative;
+}
+.card{
+    position: absolute;
+    transform: translate(50%,35%);
+}
 input{
     outline: none;
 }
@@ -6,4 +13,7 @@ input{
 }
 .img{
     width: 90%;
+}
+.img-div{
+    width: 55%;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import "../stylesheets/logo.css"
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo/logo.svg"
 
@@ -8,8 +7,8 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">
-            <img src={logo} alt="Logo" className="logo" />
+          <NavLink className="navbar-brand w-25" to="/">
+            <img src={logo} alt="Logo" className="w-100" />
           </NavLink>
           <button
             className="navbar-toggler"
