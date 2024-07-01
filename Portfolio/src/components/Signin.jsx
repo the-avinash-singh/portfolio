@@ -98,7 +98,7 @@ const Signin = () => {
                   placeholder="Confirm Password"
                 />
               </div>
-              <div className="m-4">
+              <div className="my-4 ms-3">
                 <input
                   type="submit"
                   name="signup"
