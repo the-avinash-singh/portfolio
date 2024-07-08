@@ -11,7 +11,10 @@ const About = () => {
         <form method="" className="p-5 rounded shadow w-75">
           <div className="row">
             <div className="col-md-4">
+              <div className="d-flex justify-content-between align-items-center">
               <img src={user} alt="User" className="about-img"/>
+              <input type="submit" className="btn btn-info d-md-none" name="addMore" value="Edit Profile" />
+            </div>
             </div>
             <div className="col-md-6">
               <div className="fs-4">Avinash Singh</div>
@@ -46,7 +49,7 @@ const About = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-md-2">
+            <div className="col-md-2 d-none d-md-inline">
               <input type="submit" className="btn btn-info" name="addMore" value="Edit Profile" />
             </div>
           </div>

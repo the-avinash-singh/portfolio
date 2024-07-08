@@ -6,6 +6,7 @@ import Login from './components/Login'
 import Navbar from './components/Navbar'
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Signin from './components/Signin'
+import ErrorPage from './components/ErrorPage'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path='/contact' element={<Contact/>}/>
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/signin' element={<Signin/>}/>
+        <Route path="*" element={<ErrorPage/>} />
         </Routes>
         </BrowserRouter>
       </div>
