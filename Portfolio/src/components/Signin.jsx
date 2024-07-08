@@ -9,13 +9,13 @@ import { NavLink } from "react-router-dom";
 const Signin = () => {
   return (
     <div className="full-height d-flex justify-content-center align-items-center">
-      <section className="shadow rounded-4 w-50">
+      <section className="shadow rounded-4 custom-width">
         <h2 className="m-4 pb-0 mb-0">SignUp</h2>
         <div className="d-lg-flex justify-content-center align-items-center">
-          <div className="d-flex fs-5 mx-4 mx-md-0 align-items-center mt-5">
+          <div className="d-flex fs-5 align-items-center mt-5 w-100">
             <form id="signup-form" className="pb-2 w-100 mx-4 mx-lg-0">
-              <div className="mb-3 d-flex ">
-                <label htmlFor="name" className="mx-3">
+              <div className="mb-3 d-flex mx-4">
+                <label htmlFor="name">
                   <FaUser />
                 </label>
                 <input
@@ -27,9 +27,9 @@ const Signin = () => {
                   placeholder="Name"
                 />
               </div>
-              <div className="mb-3 d-flex">
-                <label htmlFor="email" className="mx-3">
-                <SiGmail />
+              <div className="mb-3 d-flex mx-4">
+                <label htmlFor="email">
+                  <SiGmail />
                 </label>
                 <input
                   className="border w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
@@ -40,8 +40,8 @@ const Signin = () => {
                   placeholder="Email"
                 />
               </div>
-              <div className="mb-3 d-flex">
-                <label htmlFor="phone" className="mx-3">
+              <div className="mb-3 d-flex mx-4">
+                <label htmlFor="phone">
                   <FaPhone />
                 </label>
                 <input
@@ -53,9 +53,9 @@ const Signin = () => {
                   placeholder="Phone"
                 />
               </div>
-              <div className="mb-3 d-flex">
-                <label htmlFor="work" className="mx-3">
-                  <FaFolderOpen /> 
+              <div className="mb-3 d-flex mx-4">
+                <label htmlFor="work">
+                  <FaFolderOpen />
                 </label>
                 <input
                   className="border w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
@@ -66,8 +66,8 @@ const Signin = () => {
                   placeholder="Profession"
                 />
               </div>
-              <div className="mb-3 d-flex">
-                <label htmlFor="password" className="mx-3">
+              <div className="mb-3 d-flex mx-4">
+                <label htmlFor="password">
                   <FaLock />
                 </label>
                 <input
@@ -79,8 +79,8 @@ const Signin = () => {
                   placeholder="Password"
                 />
               </div>
-              <div className="mb-3 d-flex">
-                <label htmlFor="cpassword" className="mx-3">
+              <div className="mb-3 d-flex mx-4">
+                <label htmlFor="cpassword">
                   <FaLock />
                 </label>
                 <input
@@ -97,17 +97,17 @@ const Signin = () => {
                   type="submit"
                   name="signup"
                   id="signup"
-                  className="btn text-white fw-bolder px-3 btn-outline-none btn-info"
+                  className="btn mx-auto mx-lg-0 text-white fw-bolder px-3 btn-outline-none btn-info"
                   value="SignUp"
                 />
-                <span className="fs-6 mb-3 d-lg-none">
-              Already have an account? <NavLink to="/login">Login</NavLink>
-            </span>
+                <span className="fs-6 mb-3 d-lg-none text-center">
+                  Already have an account? <NavLink to="/login">Login</NavLink>
+                </span>
               </div>
             </form>
           </div>
-          <div className=" d-none d-lg-inline img-div">
-            <img src={signimg} alt="img" className="img" />
+          <div className=" d-none d-lg-inline img-div w-100">
+            <img src={signimg} alt="img" className="img w-100" />
             <div className="text-center">
               Already have an account? <NavLink to="/login">Login</NavLink>
             </div>

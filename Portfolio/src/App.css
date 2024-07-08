@@ -1,3 +1,11 @@
 .full-height{
     height:91svh;
 }
+.custom-width{
+    width: 80%;
+}
+@media (min-width:670px) {
+    .custom-width{
+        width: 60%;
+    }
+}

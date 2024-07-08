@@ -8,24 +8,21 @@ const About = () => {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center full-height">
-        <form method="" className="p-5 rounded shadow w-75">
+        <form method="" className="p-4 mt-5 mt-md-0 rounded shadow justify-content-center custom-width">
           <div className="row">
-            <div className="col-md-4">
-              <div className="d-flex justify-content-between align-items-center">
+            <div className="col-md-4 d-flex d-md-inline justify-content-center">
               <img src={user} alt="User" className="about-img"/>
-              <input type="submit" className="btn btn-info d-md-none" name="addMore" value="Edit Profile" />
             </div>
-            </div>
-            <div className="col-md-6">
+            <div className="col-md-5 d-flex d-md-inline justify-content-center align-items-center flex-column">
               <div className="fs-4">Avinash Singh</div>
               <div className="text-info">Web Developer</div>
               <p className="fs-6 text-dark-emphasis">
                 RANKING-<span className="fw-bold"> 1/10</span>
               </p>
-              <ul className="nav nav-underline" role="tablist">
+              <ul className="nav nav-underline border-bottom d-lg-flex justify-content-evenly" role="tablist">
                 <li className="nav-item">
                   <a
-                    className="nav-link text-black fs-5 fw-medium"
+                    className="nav-link active text-black fs-5 fw-medium"
                     id="home-tab"
                     data-bs-toggle="tab"
                     href="#home"
@@ -49,17 +46,17 @@ const About = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-md-2 d-none d-md-inline">
-              <input type="submit" className="btn btn-info" name="addMore" value="Edit Profile" />
+            <div className="col-md-3 d-lg-flex justify-content-end align-items-start">
+              <input type="submit" className="btn btn-info my-3" name="addMore" value="Edit Profile" />
             </div>
           </div>
           <div className="row">
             <div className="col-md-4">
               <div className="text-gray">
-                <p className="my-3">Social Links</p>
+                <p className="my-3 fs-5 fw-medium">Social Links</p>
               </div>
             </div>
-            <div className="col-md-8 ps-5 tab-content" id="myTabContent">
+            <div className="col-md-8 ps-5 tab-content d-flex d-md-inline justify-content-center" id="myTabContent">
               <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <AboutHomeTab/>
               </div>
