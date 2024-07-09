@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFolderOpen, FaPhone, FaUser } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import { FaLock } from "react-icons/fa6";
 import "../stylesheets/login.css";
 import login from "../assets/login.webp";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { loginApi } from "../apis/apis";
 
 const Login = () => {
+
+  const navigate=useNavigate()
+  const [user,setUser]=useState({
+    email:"",
+    password:""
+  })
+
+  const handelInput=(e)=>{
+    setUser({...user, [e.target.name]:e.target.value})
+  }
+
+  const apiCall=async(e)=>{
+    e.preventDefault()
+    const res=await loginApi(user)
+    if(res.status==200){
+      navigate("/")
+      alert("Loggedin sucessfully")
+    }else{
+      const result=await res.json()
+      alert(`Unsccessfull ${result.message}`)
+    }
+  }
   return (
     <>
       <div className="d-flex justify-content-center align-items-center full-height">
@@ -32,6 +55,8 @@ const Login = () => {
                     id="email"
                     autoComplete="off"
                     placeholder="Email"
+                    value={user.email}
+                    onChange={handelInput}
                   />
                 </div>
                 <div className="mb-3 d-flex">
@@ -45,6 +70,8 @@ const Login = () => {
                     id="password"
                     autoComplete="off"
                     placeholder="Password"
+                    value={user.password}
+                    onChange={handelInput}
                   />
                 </div>
                 <div className=" d-flex flex-column mx-5 mb-lg-3">
@@ -54,6 +81,7 @@ const Login = () => {
                     id="login"
                     className="btn text-white fw-bolder mx-auto mx-lg-0 px-3 btn-outline-none btn-info"
                     value="Log in"
+                    onClick={apiCall}
                   />
                   <span className="fs-6 mb-3 d-lg-none text-center">
                     Don't have an account?{" "}

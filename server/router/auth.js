@@ -12,10 +12,10 @@ router.get("/",(req,res)=>{
     res.send("home");
 });
 
-router.post('/register',async(req,res)=>{
+router.post('/signin',async(req,res)=>{
     const {name,email,phone,work,password}=req.body;
     if (!name||!email||!phone||!work||!password){
-        return res.status(422).json({error:"plz fill all the fields"});
+        return res.status(422).json({message:"plz fill all the fields"});
     }
 
     try{
@@ -33,6 +33,10 @@ router.post('/register',async(req,res)=>{
             }
         };
         const token=jwt.sign(payload,secret);
+        res.cookie("token",token,{
+            expires:new Date(Date.now()+24*30*60*60*60),
+            httpOnly:true
+        })
         res.status(201).json({message:"user registered",user,token});
     }catch(err){
         res.status(500).json({error:"server error"});
@@ -65,7 +69,7 @@ router.post("/login",async(req,res)=>{
             expires:new Date(Date.now()+24*30*60*60*60),
             httpOnly:true
         })
-        res.status(201).json({message:"logedin successfully",user,token});
+        res.status(200).json({message:"logedin successfully",user,token});
     }catch(err){
         console.log(err);
         return res.status(500).json({error:"server error"})
