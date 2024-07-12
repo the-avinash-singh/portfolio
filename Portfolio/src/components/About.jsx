@@ -1,25 +1,92 @@
-import React from "react";
-import user from "../assets/user.png";
+import { useEffect, useState } from "react";
+import userImg from "../assets/user-img.svg";
 import AboutHomeTab from "./AboutHomeTab";
-import "../stylesheets/about.css"
+import "../stylesheets/about.css";
 import AboutAboutTab from "./AboutAboutTab";
+import { aboutApi, idaboutApi } from "../apis/apis";
+import {  useLocation, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { IoMdShare } from "react-icons/io";
 
 const About = () => {
+  const location = useLocation();
+
+  const navigate = useNavigate();
+  const [user, setUser] = useState({});
+
+  const queryParams = new URLSearchParams(location.search);
+  const id = queryParams.get("id") || undefined;
+
+  const callApi = async () => {
+    let result=""
+    if(id){
+       result=await idaboutApi(id);
+    }else{
+      result = await aboutApi();
+    }
+    setUser(result);
+  };
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      let url = "";
+      if (!id) {
+        url = window.location.href + `?id=${user._id}`;
+      } else {
+        url = window.location.href;
+      }
+      try {
+        await navigator.share({
+          title: "Check out my EazyRes profile!",
+          text: "Check out my EazyRes profile.",
+          url: url,
+        });
+        console.log("Successfully shared");
+      } catch (error) {
+        console.error("Error sharing", error);
+      }
+    } else {
+      alert("Sharing not supported");
+    }
+  };
+
+  useEffect(() => {
+    if (!Cookies.get("token") && !id) {
+      navigate("/login");
+    }
+      callApi();
+  }, []);
+
   return (
     <>
       <div className="d-flex justify-content-center align-items-center full-height">
-        <form method="" className="p-4 mt-5 mt-md-0 rounded shadow justify-content-center custom-width">
-          <div className="row">
-            <div className="col-md-4 d-flex d-md-inline justify-content-center">
-              <img src={user} alt="User" className="about-img"/>
+        <form className="p-4 mt-5 mt-md-0 rounded shadow justify-content-center about-width">
+          <div className="d-flex mx-4 justify-content-between align-items-start">
+          <h1 className="my-4">Your Profile</h1>
+              <input
+                type="button"
+                className="btn btn-info my-4 fw-medium"
+                name="addMore"
+                value="Edit Profile"
+              />
             </div>
-            <div className="col-md-5 d-flex d-md-inline justify-content-center align-items-center flex-column">
-              <div className="fs-4">Avinash Singh</div>
-              <div className="text-info">Web Developer</div>
-              <p className="fs-6 text-dark-emphasis">
-                RANKING-<span className="fw-bold"> 1/10</span>
+          <div className="row">
+            <div className="col-md-5 d-flex d-md-inline justify-content-center">
+              <img src={userImg} alt="User" className="about-img ms-md-5" />
+            </div>
+            <div className="col-md-6 d-flex d-md-inline justify-content-center align-items-center flex-column">
+              <div className="fs-4">{user?.name}</div>
+              <div className="text-info">{user?.work}</div>
+              <p className="fs-6 text-dark-emphasis mt-2">
+                Share:{" "}
+                <span className="fs-6" onClick={handleShare}>
+                  <IoMdShare />
+                </span>
               </p>
-              <ul className="nav nav-underline border-bottom d-lg-flex justify-content-evenly" role="tablist">
+              <ul
+                className="nav nav-underline border-bottom d-lg-flex justify-content-evenly"
+                role="tablist"
+              >
                 <li className="nav-item">
                   <a
                     className="nav-link active text-black fs-5 fw-medium"
@@ -46,22 +113,39 @@ const About = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-md-3 d-lg-flex justify-content-end align-items-start">
-              <input type="submit" className="btn btn-info my-3" name="addMore" value="Edit Profile" />
-            </div>
           </div>
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-5">
               <div className="text-gray">
-                <p className="my-3 fs-5 fw-medium">Social Links</p>
+                <p className="my-3 ms-5 fs-5 fw-medium">Social Links</p>
+                {
+                  user?.links&&user?.links.map((link,index)=>{
+                    <div key={index}>
+                      <a target="_blank" rel="noopener noreferrer">{link.link}</a>
+                    </div>
+                  })
+                }
               </div>
             </div>
-            <div className="col-md-8 ps-5 tab-content d-flex d-md-inline justify-content-center" id="myTabContent">
-              <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <AboutHomeTab/>
+            <div
+              className="col-md-7 ps-5 tab-content d-flex d-md-inline justify-content-center"
+              id="myTabContent"
+            >
+              <div
+                className="tab-pane fade show active"
+                id="home"
+                role="tabpanel"
+                aria-labelledby="home-tab"
+              >
+                <AboutHomeTab user={user} />
               </div>
-              <div className="tab-pane fade" id="about" role="tabpanel" aria-labelledby="profile-tab">
-                <AboutAboutTab/>
+              <div
+                className="tab-pane fade"
+                id="about"
+                role="tabpanel"
+                aria-labelledby="profile-tab"
+              >
+                <AboutAboutTab user={user} />
               </div>
             </div>
           </div>

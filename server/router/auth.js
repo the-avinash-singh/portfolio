@@ -1,5 +1,4 @@
 const express=require("express");
-const mongoose=require("mongoose");
 const User=require("../models/User");
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
@@ -35,7 +34,6 @@ router.post('/signin',async(req,res)=>{
         const token=jwt.sign(payload,secret);
         res.cookie("token",token,{
             expires:new Date(Date.now()+24*30*60*60*60),
-            httpOnly:true
         })
         res.status(201).json({message:"user registered",user,token});
     }catch(err){
@@ -67,7 +65,6 @@ router.post("/login",async(req,res)=>{
         const token=jwt.sign(payload,secret)
         res.cookie("token",token,{
             expires:new Date(Date.now()+24*30*60*60*60),
-            httpOnly:true
         })
         res.status(200).json({message:"logedin successfully",user,token});
     }catch(err){

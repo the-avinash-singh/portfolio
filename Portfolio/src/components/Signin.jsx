@@ -7,38 +7,39 @@ import signimg from "../assets/signimg.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signinApi } from "../apis/apis";
 
-const Signin = () => {
-  const navigate=useNavigate()
+const Signin = ({setToken}) => {
+  const navigate = useNavigate();
 
-  const [user,setUser]=useState({
-    name:"",
-    email:"",
-    phone:"",
-    work:"",
-    password:"",
-    cpassword:"",
-  })
-  const [match,setMatch]=useState(true)
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    work: "",
+    password: "",
+    cpassword: "",
+  });
+  const [match, setMatch] = useState(true);
 
-  const handelInput=(e)=>{
-    setUser({...user,[e.target.name]:e.target.value})
-  }
+  const handelInput = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
-  const apiCall=async(e)=>{
-    e.preventDefault()
-    setMatch(false)
-    if(user.password===user.cpassword){
-      setMatch(true)
-      const res=await signinApi(user);
-      if(res.status==201){
-        navigate("/")
-        alert("Loggedin sucessfully")
-      }else{
-        const result=await res.json()
-        alert(`Unsccessfull ${result.message}`)
+  const apiCall = async (e) => {
+    e.preventDefault();
+    setMatch(false);
+    if (user.password === user.cpassword) {
+      setMatch(true);
+      const res = await signinApi(user);
+      if (res.status == 201) {
+        navigate("/");
+        setToken(true)
+        alert("Loggedin sucessfully");
+      } else {
+        const result = await res.json();
+        alert(`unsuccessful: ${result.message?result.message:result.error}`)
       }
     }
-  }
+  };
 
   return (
     <div className="full-height d-flex justify-content-center align-items-center">
@@ -52,7 +53,7 @@ const Signin = () => {
                   <FaUser />
                 </label>
                 <input
-                  className="border w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  className="border ms-2 w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
                   type="text"
                   name="name"
                   id="name"
@@ -67,7 +68,7 @@ const Signin = () => {
                   <SiGmail />
                 </label>
                 <input
-                  className="border w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  className="border ms-2 w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
                   type="email"
                   name="email"
                   id="email"
@@ -82,7 +83,7 @@ const Signin = () => {
                   <FaPhone />
                 </label>
                 <input
-                  className="border w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  className="border ms-2 w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
                   type="tel"
                   name="phone"
                   id="phone"
@@ -97,7 +98,7 @@ const Signin = () => {
                   <FaFolderOpen />
                 </label>
                 <input
-                  className="border w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  className="border ms-2 w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
                   type="text"
                   name="work"
                   id="work"
@@ -112,7 +113,7 @@ const Signin = () => {
                   <FaLock />
                 </label>
                 <input
-                  className="border w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
+                  className="border ms-2 w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
                   type="password"
                   name="password"
                   id="password"
@@ -127,17 +128,19 @@ const Signin = () => {
                   <FaLock />
                 </label>
                 <div className="w-100 mb-4">
-                <input
-                  className="border w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
-                  type="password"
-                  name="cpassword"
-                  id="cpassword"
-                  autoComplete="off"
-                  placeholder="Confirm Password"
-                  value={user.cpassword}
-                  onChange={handelInput}
+                  <input
+                    className="border ms-2 w-100 border-black border-end-0 border-start-0 border-top-0 fs-5"
+                    type="password"
+                    name="cpassword"
+                    id="cpassword"
+                    autoComplete="off"
+                    placeholder="Confirm Password"
+                    value={user.cpassword}
+                    onChange={handelInput}
                   />
-                  <div className={`fs-6 text-danger d-${!match?"":"none"}`}>*Password and Confirm Password mismatch</div>
+                  <div className={`fs-6 text-danger d-${!match ? "" : "none"}`}>
+                    *Password and Confirm Password mismatch
+                  </div>
                 </div>
               </div>
               <div className=" d-flex flex-column mx-5 mb-lg-3">

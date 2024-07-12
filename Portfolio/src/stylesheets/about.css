@@ -1,3 +1,11 @@
 .about-img{
     width:8rem;
 }
+.about-width{
+    width: 80%;
+}
+@media (min-width:850px) {
+    .about-width{
+        width: 70%;
+    }
+}

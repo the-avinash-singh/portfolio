@@ -1,9 +1,16 @@
 import React from "react";
-import "../stylesheets/logo.css"
+import "../stylesheets/logo.css";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo/logo.svg"
+import logo from "../assets/logo/logo.svg";
+import Cookies from "js-cookie";
 
-const Navbar = () => {
+const Navbar = ({token,setToken}) => {
+
+  const logout = () => {
+    Cookies.remove("token");
+    setToken(false);
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -30,26 +37,36 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/about">
-                  About
+                <NavLink className="nav-link" to="/profile">
+                  Profile
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/contact">
-                  Contact
+                  Contact Us
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/login">
-                  Login
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/signin">
-                  SignUp
-                </NavLink>
-              </li>
-              </ul>
+              {token ? (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/login">
+                    <span onClick={logout}>Logout</span>
+                  </NavLink>
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/login">
+                      Login
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/signin">
+                      SignUp
+                    </NavLink>
+                  </li>
+                </>
+              )}
+            </ul>
           </div>
         </div>
       </nav>
