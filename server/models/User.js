@@ -21,21 +21,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  links: [
-    {
-      link: {
-        type: String,
-      },
-    },
-  ],
-  experiance: {
+  links: {
+    type: String,
+  },
+  experience: {
     type: String,
   },
   education: {
     type: String,
   },
   year: {
-    type: Number,
+    type: String,
   },
   skills: {
     type: String,
