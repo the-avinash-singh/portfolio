@@ -72,27 +72,28 @@ export const idaboutApi = async (id) => {
 
 export const editAboutApi = async (user,id) => {
     try{
-        const res=fetch(`/data/${id}`,{
+        const res=fetch(`${host}/data/${id}`,{
             method:"put",
             headers:{
                 "Content-Type": "application/json",
             },
             credentials: "include",
-            body:{
+            body:JSON.stringify({
                 name:user.name,
                 email:user.email ,
                 phone: user.phone, 
                 work: user.work,
                 links: user.links,
-                experiance: user.experiance,
+                experience: user.experience,
                 education: user.education,
                 year: user.year,
                 skills: user.skills,
                 hobbies: user.hobbies,
-            }
-        })
+            })
+        });
+        return res;
     }catch(err){
-        console.log(err)
+        console.log(err);
     }
 };
 

@@ -7,13 +7,19 @@ import { aboutApi, idaboutApi } from "../apis/apis";
 import {  useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { IoMdShare } from "react-icons/io";
+import EditAbout from "./EditAbout";
 
 const About = () => {
   const location = useLocation();
 
   const navigate = useNavigate();
   const [user, setUser] = useState({});
+  const [modalShow, setModalShow] = useState(false);
+  let links=[];
 
+  if(user?.links){
+    links=user?.links.split(",")
+  }
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id") || undefined;
 
@@ -63,12 +69,13 @@ const About = () => {
         <form className="p-4 mt-5 mt-md-0 rounded shadow justify-content-center about-width">
           <div className="d-flex mx-4 justify-content-between align-items-start">
           <h1 className="my-4">Your Profile</h1>
-              <input
+          {Cookies.get("token")&&<input
                 type="button"
                 className="btn btn-info my-4 fw-medium"
                 name="addMore"
                 value="Edit Profile"
-              />
+                onClick={() => setModalShow(true)}
+          />}
             </div>
           <div className="row">
             <div className="col-md-5 d-flex d-md-inline justify-content-center">
@@ -119,9 +126,9 @@ const About = () => {
               <div className="text-gray">
                 <p className="my-3 ms-5 fs-5 fw-medium">Social Links</p>
                 {
-                  user?.links&&user?.links.map((link,index)=>{
+                  user?.links&&links.map((link,index)=>{
                     <div key={index}>
-                      <a target="_blank" rel="noopener noreferrer">{link.link}</a>
+                      <a target="_blank" rel="noopener noreferrer">{link}</a>
                     </div>
                   })
                 }
@@ -151,6 +158,8 @@ const About = () => {
           </div>
         </form>
       </div>
+      <EditAbout show={modalShow}
+        onHide={() => setModalShow(false)}/>
     </>
   );
 };

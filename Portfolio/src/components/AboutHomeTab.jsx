@@ -23,10 +23,7 @@ const AboutHomeTab = ({ user }) => {
         </div>
         <div className="col-md-8">
           <p>
-            <a
-              href={`email:`}
-              className="text-info text-wrap"
-            >
+            <a href={`email:`} className="text-info text-wrap">
               {user?.email}
             </a>
           </p>
