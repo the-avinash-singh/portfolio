@@ -1,57 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { aboutApi, editAboutApi } from "../apis/apis";
+import { editAboutApi } from "../apis/apis";
 
 function EditAbout(props) {
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    phone: '',
-    work: '',
-    links: '',
-    experiance: '',
-    education: '',
-    year: '',
-    skills: '',
-    hobbies: '',
-  });
+
+  const {user,setUser}=props
 
   const handelInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user)
   };
 
-  const callApi=async()=>{
-    const result = await aboutApi();
-    setUser({
-      _id:result._id,
-      name: result.name || "",
-      email: result.email || "",
-      phone: result.phone || "",
-      work: result.work || "",
-      links: result.links || "",
-      experience: result.experience || "",
-      education: result.education || "",
-      year: result.year || "",
-      skills: result.skills || "",
-      hobbies: result.hobbies || "",
-    });
-  }
+  const regex = /^(https?:\/\/[^\s,]+(,(https?:\/\/[^\s,]+)){0,2})?$/;
   const handelSubmit=async()=>{
-    const result=await editAboutApi(user,user._id);
-    if(result.status===200){
-      alert("Updated sucessfully");
-      props.onHide
+    if(regex.test(user.links)){
+      const result=await editAboutApi(props.user,props.user._id);
+      if(result.status===200){
+        alert("Updated sucessfully");
+        props.onHide
+      }else{
+        const result = await res.json();
+        alert(`unsuccessful: ${result.message?result.message:result.error}`)
+      }
     }else{
-      const result = await res.json();
-      alert(`unsuccessful: ${result.message?result.message:result.error}`)
+      console.log("regex not satisfied")
     }
   }
-
-  useEffect(()=>{
-    callApi();
-  },[])
 
   return (
     <Modal

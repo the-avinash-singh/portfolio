@@ -1,12 +1,12 @@
 const AboutHomeTab = ({ user }) => {
   return (
     <>
-      <div className="row">
+      <div className="row mt-3">
         <div className="col-md-4">
           <label>User Id</label>
         </div>
         <div className="col-md-8">
-          <p className="text-info">{user?._id}</p>
+          <p className="text-info text-capitalize">{user?._id}</p>
         </div>
       </div>
       <div className="row mt-3">
@@ -14,7 +14,7 @@ const AboutHomeTab = ({ user }) => {
           <label>Name</label>
         </div>
         <div className="col-md-8">
-          <p className="text-info">{user?.name}</p>
+          <p className="text-info text-capitalize">{user?.name}</p>
         </div>
       </div>
       <div className="row mt-3">
@@ -46,7 +46,7 @@ const AboutHomeTab = ({ user }) => {
           <label>Profession</label>
         </div>
         <div className="col-md-8">
-          <p className="text-info">{user?.work}</p>
+          <p className="text-info text-capitalize">{user?.work}</p>
         </div>
       </div>
     </>

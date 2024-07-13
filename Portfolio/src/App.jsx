@@ -9,6 +9,7 @@ import Signin from './components/Signin'
 import ErrorPage from './components/ErrorPage'
 import { useEffect, useState } from 'react'
 import Cookies from "js-cookie";
+import Footer from './components/Footer'
 
 function App() {
   const [token, setToken] = useState(false);
@@ -30,6 +31,7 @@ function App() {
         <Route exact path='/signin' element={<Signin setToken={setToken}/>}/>
         <Route path="*" element={<ErrorPage/>} />
         </Routes>
+        <Footer/>
         </BrowserRouter>
       </div>
     </>

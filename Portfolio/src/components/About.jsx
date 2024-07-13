@@ -15,22 +15,33 @@ const About = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [modalShow, setModalShow] = useState(false);
-  let links=[];
-
+  let links=["yo","yo"];
   if(user?.links){
-    links=user?.links.split(",")
+    links=user.links.split(",")
   }
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id") || undefined;
 
   const callApi = async () => {
-    let result=""
+    let result={}
     if(id){
        result=await idaboutApi(id);
     }else{
       result = await aboutApi();
     }
-    setUser(result);
+    setUser({
+      _id:result._id,
+      name: result.name || "",
+      email: result.email || "",
+      phone: result.phone || "",
+      work: result.work || "",
+      links: result.links || "",
+      experience: result.experience || "",
+      education: result.education || "",
+      year: result.year || "",
+      skills: result.skills || "",
+      hobbies: result.hobbies || "",
+    });
   };
 
   const handleShare = async () => {
@@ -65,7 +76,7 @@ const About = () => {
 
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center full-height">
+      <div className="d-flex mt-5 mt-md-0 justify-content-center align-items-center full-height">
         <form className="p-4 mt-5 mt-md-0 rounded shadow justify-content-center about-width">
           <div className="d-flex mx-4 justify-content-between align-items-start">
           <h1 className="my-4">Your Profile</h1>
@@ -83,7 +94,7 @@ const About = () => {
             </div>
             <div className="col-md-6 d-flex d-md-inline justify-content-center align-items-center flex-column">
               <div className="fs-4">{user?.name}</div>
-              <div className="text-info">{user?.work}</div>
+              <div className="text-info text-capitalize">{user?.work}</div>
               <p className="fs-6 text-dark-emphasis mt-2">
                 Share:{" "}
                 <span className="fs-6" onClick={handleShare}>
@@ -127,9 +138,9 @@ const About = () => {
                 <p className="my-3 ms-5 fs-5 fw-medium">Social Links</p>
                 {
                   user?.links&&links.map((link,index)=>{
-                    <div key={index}>
-                      <a target="_blank" rel="noopener noreferrer">{link}</a>
-                    </div>
+                    return(<div key={index} className="mb-3 ms-5">
+                      <a href={link} className="text-dark border-bottom pb-1 text-capitalize text-decoration-none" target="_blank" rel="noopener noreferrer">{link}</a>
+                    </div>)
                   })
                 }
               </div>
@@ -159,7 +170,7 @@ const About = () => {
         </form>
       </div>
       <EditAbout show={modalShow}
-        onHide={() => setModalShow(false)}/>
+        onHide={() => setModalShow(false)} user={user} setUser={setUser}/>
     </>
   );
 };

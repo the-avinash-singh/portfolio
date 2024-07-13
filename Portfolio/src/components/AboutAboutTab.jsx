@@ -1,12 +1,12 @@
 const AboutAboutTab = ({ user }) => {
   return (
     <div>
-      <div className="row">
+      <div className="row mt-3">
         <div className="col-md-6">
           <label>Experiance</label>
         </div>
         <div className="col-md-6">
-          <p className="text-info">{user?.experience}</p>
+          <p className="text-info text-capitalize">{user?.experience}</p>
         </div>
       </div>
       <div className="row mt-3">
@@ -14,7 +14,7 @@ const AboutAboutTab = ({ user }) => {
           <label>Education</label>
         </div>
         <div className="col-md-6">
-          <p className="text-info">{user?.education}</p>
+          <p className="text-info text-capitalize">{user?.education}</p>
         </div>
       </div>
       <div className="row mt-3">
@@ -22,7 +22,7 @@ const AboutAboutTab = ({ user }) => {
           <label>Passing Year</label>
         </div>
         <div className="col-md-6">
-          <p className="text-info">{user?.year}</p>
+          <p className="text-info text-capitalize">{user?.year}</p>
         </div>
       </div>
       <div className="row mt-3">
@@ -30,7 +30,7 @@ const AboutAboutTab = ({ user }) => {
           <label>Skills</label>
         </div>
         <div className="col-md-6">
-          <p className="text-info text-wrap">{user?.skills}</p>
+          <p className="text-info text-wrap text-capitalize">{user?.skills}</p>
         </div>
       </div>
       <div className="row mt-3">
@@ -38,7 +38,7 @@ const AboutAboutTab = ({ user }) => {
           <label>Hobbies</label>
         </div>
         <div className="col-md-6">
-          <p className="text-info">{user?.hobbies}</p>
+          <p className="text-info text-capitalize">{user?.hobbies}</p>
         </div>
       </div>
     </div>

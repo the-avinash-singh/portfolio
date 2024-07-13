@@ -71,11 +71,11 @@ newUser.phone=phone
     newUser.hobbies=hobbies
   }
   try{
-    const user=await User.findById(req.params.id);
+    const user=await User.findById(req.user.id);
     if(!user){
       res.status(403).json({message:"User not found"})
     }
-    const result=await User.findByIdAndUpdate(req.params.id,{$set:newUser},{new:true})
+    const result=await User.findByIdAndUpdate(req.user.id,{$set:newUser},{new:true})
     return res.status(200).json(result)
 
   }catch(err){
