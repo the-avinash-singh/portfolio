@@ -8,12 +8,14 @@ import {  useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { IoMdShare } from "react-icons/io";
 import EditAbout from "./EditAbout";
+import Spinner from "./Spinner";
 
 const About = () => {
   const location = useLocation();
 
   const navigate = useNavigate();
   const [user, setUser] = useState({});
+  const [loading,setLoading]=useState(false)
   const [modalShow, setModalShow] = useState(false);
   let links=["yo","yo"];
   if(user?.links){
@@ -23,6 +25,7 @@ const About = () => {
   const id = queryParams.get("id") || undefined;
 
   const callApi = async () => {
+    setLoading(true)
     let result={}
     if(id){
        result=await idaboutApi(id);
@@ -41,7 +44,9 @@ const About = () => {
       year: result.year || "",
       skills: result.skills || "",
       hobbies: result.hobbies || "",
+      imgUrl:result.imgUrl || "",
     });
+    setLoading(false)
   };
 
   const handleShare = async () => {
@@ -88,9 +93,9 @@ const About = () => {
                 onClick={() => setModalShow(true)}
           />}
             </div>
-          <div className="row">
+          {loading?<Spinner/>:<><div className="row">
             <div className="col-md-5 d-flex d-md-inline justify-content-center">
-              <img src={userImg} alt="User" className="about-img ms-md-5" />
+              <img src={user?.imgUrl?user.imgUrl:userImg} alt="User" className="about-img ms-md-5" />
             </div>
             <div className="col-md-6 d-flex d-md-inline justify-content-center align-items-center flex-column">
               <div className="fs-4">{user?.name}</div>
@@ -138,7 +143,7 @@ const About = () => {
                 <p className="my-3 ms-5 fs-5 fw-medium">Social Links</p>
                 {
                   user?.links&&links.map((link,index)=>{
-                    return(<div key={index} className="mb-3 ms-5">
+                    return(<div key={index} className="mb-3 ms-5 overflow-hidden">
                       <a href={link} className="text-dark border-bottom pb-1 text-capitalize text-decoration-none" target="_blank" rel="noopener noreferrer">{link}</a>
                     </div>)
                   })
@@ -166,7 +171,7 @@ const About = () => {
                 <AboutAboutTab user={user} />
               </div>
             </div>
-          </div>
+          </div></>}
         </form>
       </div>
       <EditAbout show={modalShow}

@@ -89,6 +89,7 @@ export const editAboutApi = async (user,id) => {
                 year: user.year,
                 skills: user.skills,
                 hobbies: user.hobbies,
+                imgUrl:user.imgUrl,
             })
         });
         return res;

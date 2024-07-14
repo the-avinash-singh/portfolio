@@ -39,6 +39,9 @@ const userSchema = new mongoose.Schema({
   hobbies: {
     type: String,
   },
+  imgUrl:{
+    type:String,
+  },
   date: {
     type: Date,
     default: Date.now,

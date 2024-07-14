@@ -38,7 +38,7 @@ router.post("/data", async (req, res) => {
 });
 
 router.put("/data/:id",authentication, async(req, res) => {
-  const {name,email,phone,work,links,experience,education,year,skills,hobbies} = req.body;
+  const {name,email,phone,work,links,experience,education,year,skills,hobbies,imgUrl} = req.body;
   const newUser={}
   if (name) {
     newUser.name=name
@@ -69,6 +69,9 @@ newUser.phone=phone
   }
   if(hobbies){
     newUser.hobbies=hobbies
+  }
+  if(imgUrl){
+    newUser.imgUrl=imgUrl
   }
   try{
     const user=await User.findById(req.user.id);

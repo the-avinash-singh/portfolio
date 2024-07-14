@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { editAboutApi } from "../apis/apis";
+import Uploder from "./Uploder";
 
 function EditAbout(props) {
 
@@ -16,13 +17,14 @@ function EditAbout(props) {
     if(regex.test(user.links)){
       const result=await editAboutApi(props.user,props.user._id);
       if(result.status===200){
-        alert("Updated sucessfully");
         props.onHide
+        alert("Updated sucessfully");
       }else{
         const result = await res.json();
         alert(`unsuccessful: ${result.message?result.message:result.error}`)
       }
     }else{
+      alert("Please only fill 3 valid links ")
       console.log("regex not satisfied")
     }
   }
@@ -172,6 +174,10 @@ function EditAbout(props) {
             />
           </div>
         </form>
+          <div className="">
+            <label className="mt-4 me-4">Profile image</label>
+            <Uploder user={user} setUser={setUser}/>
+          </div>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide} variant="secondry">
