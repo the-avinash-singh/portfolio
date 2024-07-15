@@ -33,6 +33,8 @@ router.post('/signin',async(req,res)=>{
         };
         const token=jwt.sign(payload,secret);
         res.cookie("token",token,{
+            httpOnly: true,
+            secure: true,
             expires:new Date(Date.now()+24*30*60*60*60),
         })
         res.status(201).json({message:"user registered",user,token});
@@ -64,6 +66,8 @@ router.post("/login",async(req,res)=>{
         }
         const token=jwt.sign(payload,secret)
         res.cookie("token",token,{
+            httpOnly: true,
+            secure: true,
             expires:new Date(Date.now()+24*30*60*60*60),
         })
         res.status(200).json({message:"logedin successfully",user,token});
