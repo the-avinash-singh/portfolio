@@ -81,9 +81,9 @@ const About = () => {
 
   return (
     <>
-      <div className="d-flex mt-5 mt-md-0 justify-content-center align-items-center full-height">
-        <form className="p-4 mt-5 mt-md-0 rounded shadow justify-content-center about-width">
-          <div className="d-flex mx-4 justify-content-between align-items-start">
+      <div className="d-flex my-5 my-md-0 justify-content-center align-items-center full-height">
+        <form className="p-4  my-md-0 rounded shadow justify-content-center about-width">
+          <div className="d-flex mx-md-4 justify-content-between align-items-start">
           <h1 className="my-4">Your Profile</h1>
           {Cookies.get("token")&&<input
                 type="button"
@@ -137,13 +137,13 @@ const About = () => {
               </ul>
             </div>
           </div>
-          <div className="row">
+          <div className="row link">
             <div className="col-md-5">
               <div className="text-gray">
-                <p className="my-3 ms-5 fs-5 fw-medium">Social Links</p>
+                <p className="my-3 ms-md-5 fs-5 fw-medium">Social Links</p>
                 {
                   user?.links&&links.map((link,index)=>{
-                    return(<div key={index} className="mb-3 ms-5 overflow-hidden">
+                    return(<div key={index} className="mb-3 ms-md-5">
                       <a href={link} className="text-dark border-bottom pb-1 text-capitalize text-decoration-none" target="_blank" rel="noopener noreferrer">{link}</a>
                     </div>)
                   })
@@ -151,7 +151,7 @@ const About = () => {
               </div>
             </div>
             <div
-              className="col-md-7 ps-5 tab-content d-flex d-md-inline justify-content-center"
+              className="col-md-7 ps-md-5 tab-content d-flex d-md-inline justify-content-center"
               id="myTabContent"
             >
               <div

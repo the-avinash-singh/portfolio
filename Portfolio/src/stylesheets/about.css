@@ -4,6 +4,9 @@
 .about-width{
     width: 80%;
 }
+.link{
+    overflow-wrap: anywhere;
+}
 @media (min-width:850px) {
     .about-width{
         width: 75%;
