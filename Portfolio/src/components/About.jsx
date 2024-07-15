@@ -5,7 +5,6 @@ import "../stylesheets/about.css";
 import AboutAboutTab from "./AboutAboutTab";
 import { aboutApi, idaboutApi } from "../apis/apis";
 import {  useLocation, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import { IoMdShare } from "react-icons/io";
 import EditAbout from "./EditAbout";
 import Spinner from "./Spinner";
@@ -73,7 +72,7 @@ const About = () => {
   };
 
   useEffect(() => {
-    if (!Cookies.get("token") && !id) {
+    if (!localStorage.getItem("token") && !id) {
       navigate("/login");
     }
       callApi();
@@ -85,7 +84,7 @@ const About = () => {
         <form className="p-4  my-md-0 rounded shadow justify-content-center about-width">
           <div className="d-flex mx-md-4 justify-content-between align-items-start">
           <h1 className="my-4">Your Profile</h1>
-          {Cookies.get("token")&&<input
+          {localStorage.getItem("token")&&<input
                 type="button"
                 className="btn btn-info my-4 fw-medium"
                 name="addMore"

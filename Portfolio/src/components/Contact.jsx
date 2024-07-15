@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { aboutApi, contactPostApi } from "../apis/apis";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 
 const Contact = () => {
 
@@ -26,7 +25,7 @@ const Contact = () => {
     console.log(result);
   };
   useEffect(() => {
-    if (!Cookies.get("token")) {
+    if (!localStorage.getItem("token")) {
       navigate("/login");
     }
     callApi();

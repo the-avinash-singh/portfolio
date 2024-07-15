@@ -2,7 +2,6 @@ import React from "react";
 import "../stylesheets/logo.css";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo/logo.svg";
-import Cookies from "js-cookie";
 
 const Navbar = ({token,setToken}) => {
 
