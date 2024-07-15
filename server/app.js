@@ -11,7 +11,7 @@ const app=express();
 
 connectToMongo();
 
-app.use(cors({origin: 'http://localhost:5173',credentials:true}))
+app.use(cors({origin: 'https://eazyres.netlify.app',credentials:true}))
 app.use(cookieParser())
 app.use(express.json())
 app.use(welcome);
@@ -21,5 +21,5 @@ app.use(data)
 const port=process.env.PORT||2000
 
 app.listen(port,()=>{
-    console.log(`server is on http://localhost:${port}`);
+    console.log(`server is on https://eazyres.netlify.app:${port}`);
 });
