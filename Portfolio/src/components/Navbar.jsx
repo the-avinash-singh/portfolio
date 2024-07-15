@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 const Navbar = ({token,setToken}) => {
 
   const logout = () => {
-    Cookies.remove("token");
+    localStorage.removeItem('token')
     setToken(false);
   };
 

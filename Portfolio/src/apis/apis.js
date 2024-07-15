@@ -47,7 +47,7 @@ export const aboutApi = async () => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
-        Accept:"application/json"
+        "auth-token":localStorage.getItem("token")
       },
       credentials: "include",
     });
@@ -62,9 +62,7 @@ export const idaboutApi = async (id) => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
-        Accept:"application/json"
       },
-      credentials: "include",
     });
     return res.json();
   } catch (err) {
@@ -78,7 +76,7 @@ export const editAboutApi = async (user,id) => {
             method:"put",
             headers:{
                 "Content-Type": "application/json",
-                Accept:"application/json"
+                "auth-token":localStorage.getItem("token")
             },
             credentials: "include",
             body:JSON.stringify({
@@ -107,14 +105,12 @@ export const contactPostApi = async (user) => {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        Accept:"application/json"
       },
       body: JSON.stringify({
         name: user.name,
         email: user.email,
         message: user.message,
       }),
-      credentials: "include",
     });
     return res;
   } catch (err) {

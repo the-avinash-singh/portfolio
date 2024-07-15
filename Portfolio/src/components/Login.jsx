@@ -24,6 +24,8 @@ const Login = ({setToken}) => {
       navigate("/");
       alert("Loggedin sucessfully");
       setToken(true)
+      const result = await res.json();
+        localStorage.setItem("token",result.token);
     } else {
       const result = await res.json();
       alert(`unsuccessful: ${result.message?result.message:result.error}`)

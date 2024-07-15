@@ -34,6 +34,8 @@ const Signin = ({setToken}) => {
         navigate("/");
         setToken(true)
         alert("Loggedin sucessfully");
+        const result = await res.json();
+        localStorage.setItem("token",result.token);
       } else {
         const result = await res.json();
         alert(`unsuccessful: ${result.message?result.message:result.error}`)
