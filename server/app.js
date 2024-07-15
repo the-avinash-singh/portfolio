@@ -5,7 +5,7 @@ var cors = require('cors')
 const cookieParser=require("cookie-parser")
 const auth=require("./router/auth")
 const data=require("./router/data")
-const welcome=require("./routes/welcome")
+const welcome=require("./router/welcome")
 
 const app=express();
 
