@@ -1,4 +1,4 @@
-const host = "http://localhost:3000";
+const host = "https://portfolio-t4zi.onrender.com";
 
 export const signinApi = async (user) => {
   try {
