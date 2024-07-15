@@ -4,6 +4,7 @@ const jwt_secret = process.env.JWTSECRET;
 
 const authentication=(req,res,next)=>{
     const token=req.cookies.token;
+    console.log(req)
     if(!token){
         res.status(401).send({message:"user unauthorised"})
     }
