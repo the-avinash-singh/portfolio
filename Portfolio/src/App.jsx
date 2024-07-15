@@ -8,13 +8,12 @@ import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Signin from './components/Signin'
 import ErrorPage from './components/ErrorPage'
 import { useEffect, useState } from 'react'
-import Cookies from "js-cookie";
 import Footer from './components/Footer'
 
 function App() {
   const [token, setToken] = useState(false);
   useEffect(() => {
-    if (Cookies.get("token")) {
+    if (localStorage.getItem("token")) {
       setToken(true);
     }
   }, []);
