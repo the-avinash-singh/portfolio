@@ -33,7 +33,6 @@ const Signin = ({setToken}) => {
       if (res.status == 201) {
         navigate("/");
         setToken(true)
-        alert("Loggedin sucessfully");
         const result = await res.json();
         localStorage.setItem("token",result.token);
       } else {

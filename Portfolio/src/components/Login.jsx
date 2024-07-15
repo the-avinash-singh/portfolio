@@ -22,7 +22,6 @@ const Login = ({setToken}) => {
     const res = await loginApi(user);
     if (res.status == 200) {
       navigate("/");
-      alert("Loggedin sucessfully");
       setToken(true)
       const result = await res.json();
         localStorage.setItem("token",result.token);
