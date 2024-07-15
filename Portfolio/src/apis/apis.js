@@ -47,6 +47,7 @@ export const aboutApi = async () => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
+        Accept:"application/json"
       },
       credentials: "include",
     });
@@ -61,6 +62,7 @@ export const idaboutApi = async (id) => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
+        Accept:"application/json"
       },
       credentials: "include",
     });
@@ -76,6 +78,7 @@ export const editAboutApi = async (user,id) => {
             method:"put",
             headers:{
                 "Content-Type": "application/json",
+                Accept:"application/json"
             },
             credentials: "include",
             body:JSON.stringify({
@@ -104,6 +107,7 @@ export const contactPostApi = async (user) => {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        Accept:"application/json"
       },
       body: JSON.stringify({
         name: user.name,
