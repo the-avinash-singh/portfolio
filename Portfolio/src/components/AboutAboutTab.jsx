@@ -27,18 +27,18 @@ const AboutAboutTab = ({ user }) => {
       </div>
       <div className="row mt-3">
         <div className="col-md-6">
-          <label>Skills</label>
-        </div>
-        <div className="col-md-6">
-          <p className="text-info text-wrap text-capitalize">{user?.skills}</p>
-        </div>
-      </div>
-      <div className="row mt-3">
-        <div className="col-md-6">
           <label>Hobbies</label>
         </div>
         <div className="col-md-6">
           <p className="text-info text-capitalize">{user?.hobbies}</p>
+        </div>
+      </div>
+      <div className="row mt-3">
+        <div className="col-md-6">
+          <label>Skills</label>
+        </div>
+        <div className="col-md-6">
+          <p className="text-info text-wrap text-capitalize">{user?.skills}</p>
         </div>
       </div>
     </div>

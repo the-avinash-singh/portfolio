@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { editAboutApi } from "../apis/apis";
@@ -17,7 +16,7 @@ function EditAbout(props) {
     if(regex.test(user.links)){
       const result=await editAboutApi(props.user,props.user._id);
       if(result.status===200){
-        props.onHide
+        props.onHide()
         alert("Updated sucessfully");
       }else{
         const result = await res.json();

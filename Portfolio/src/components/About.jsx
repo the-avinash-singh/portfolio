@@ -16,7 +16,7 @@ const About = () => {
   const [user, setUser] = useState({});
   const [loading,setLoading]=useState(false)
   const [modalShow, setModalShow] = useState(false);
-  let links=["yo","yo"];
+  let links=[];
   if(user?.links){
     links=user.links.split(",")
   }
