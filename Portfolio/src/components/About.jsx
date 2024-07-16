@@ -98,7 +98,7 @@ const About = () => {
             </div>
             <div className="col-md-6 d-flex d-md-inline justify-content-center align-items-center flex-column">
               <div className="fs-4">{user?.name}</div>
-              <div className="text-info text-capitalize">{user?.work}</div>
+              <div className="text-info text-center text-capitalize">{user?.work}</div>
               <p className="fs-6 text-dark-emphasis mt-2">
                 Share:{" "}
                 <span className="fs-6" onClick={handleShare}>
@@ -150,7 +150,7 @@ const About = () => {
               </div>
             </div>
             <div
-              className="col-md-7 ps-md-5 tab-content d-flex d-md-inline justify-content-center"
+              className="col-md-7 ps-md-5 tab-content d-flex d-md-inline justify-content-start justify-content-md-center"
               id="myTabContent"
             >
               <div

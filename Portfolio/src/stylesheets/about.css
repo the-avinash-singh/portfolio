@@ -1,5 +1,8 @@
 .about-img{
-    width:8rem;
+    width:10rem;
+    object-fit: cover;
+    aspect-ratio: 13/16;
+    image-rendering: optimizeSpeed;
 }
 .about-width{
     width: 80%;
