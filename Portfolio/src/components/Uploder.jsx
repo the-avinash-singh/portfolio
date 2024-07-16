@@ -3,7 +3,7 @@ import { useState } from 'react'
 import spinner from "../assets/spinner.svg"
 
 const Uploder = (props) => {
-    const {user,setUser}=props
+    const {user,setUser,handelSubmit}=props
     const [loading,setLoading]=useState(false)
     const deletePrevImage = async (publicId) => {
         const url = `https://api.cloudinary.com/v1_1/day8hsahb/delete_by_token`;
@@ -23,7 +23,7 @@ const Uploder = (props) => {
     const uploadImage=async (files)=>{
         setLoading(true);
         if(user.imgUrl){
-            deletePrevImage(user.imgUrl);
+            deletePrevImage(user.publicUrl);
         }
         const formData=new FormData()
         formData.append("file",files[0])
@@ -31,8 +31,12 @@ const Uploder = (props) => {
         formData.append('cloud_name', 'day8hsahb');
         try{
             const response = await axios.post("https://api.cloudinary.com/v1_1/day8hsahb/image/upload",formData)
-            setUser({...user,['imgUrl']:response.data.secure_url});
-            setLoading(false)
+            if(response.data.secure_url){
+              alert("Image Uploded Successfull")
+              handelSubmit()
+              setLoading(false)
+            }
+            setUser({...user,['imgUrl']:response.data.secure_url,['publicUrl']:response.data.public_id});
         }catch (error) {
             console.error('Error uploading image:', error);
           }

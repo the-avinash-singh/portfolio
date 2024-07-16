@@ -44,6 +44,7 @@ const About = () => {
       skills: result.skills || "",
       hobbies: result.hobbies || "",
       imgUrl:result.imgUrl || "",
+      publicUrl:result.publicUrl || "",
     });
     setLoading(false)
   };
@@ -98,7 +99,7 @@ const About = () => {
             </div>
             <div className="col-md-6 d-flex d-md-inline justify-content-center align-items-center flex-column">
               <div className="fs-4">{user?.name}</div>
-              <div className="text-info text-center text-capitalize">{user?.work}</div>
+              <div className="text-info text-capitalize">{user?.work}</div>
               <p className="fs-6 text-dark-emphasis mt-2">
                 Share:{" "}
                 <span className="fs-6" onClick={handleShare}>

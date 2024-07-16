@@ -91,6 +91,7 @@ export const editAboutApi = async (user,id) => {
                 skills: user.skills,
                 hobbies: user.hobbies,
                 imgUrl:user.imgUrl,
+                publicUrl:user.publicUrl,
             })
         });
         return res;

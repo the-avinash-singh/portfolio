@@ -16,8 +16,8 @@ function EditAbout(props) {
     if(regex.test(user.links)){
       const result=await editAboutApi(props.user,props.user._id);
       if(result.status===200){
-        props.onHide()
         alert("Updated sucessfully");
+        props.onHide()
       }else{
         const result = await res.json();
         alert(`unsuccessful: ${result.message?result.message:result.error}`)
@@ -175,7 +175,7 @@ function EditAbout(props) {
         </form>
           <div className="">
             <label className="mt-4 me-4">Profile image</label>
-            <Uploder user={user} setUser={setUser}/>
+            <Uploder handelSubmit={handelSubmit} user={user} setUser={setUser}/>
           </div>
       </Modal.Body>
       <Modal.Footer>
