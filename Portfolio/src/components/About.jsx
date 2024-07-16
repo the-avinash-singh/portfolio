@@ -58,8 +58,8 @@ const About = () => {
       }
       try {
         await navigator.share({
-          title: "Check out my EazyRes profile!",
-          text: "Check out my EazyRes profile.",
+          title: "Hi!! check out my EazyRes profile!",
+          text: "Hi!! check out my EazyRes profile.",
           url: url,
         });
         console.log("Successfully shared");
