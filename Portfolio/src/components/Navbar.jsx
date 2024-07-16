@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../stylesheets/logo.css";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo/logo.svg";
 
-const Navbar = ({token,setToken}) => {
+const Navbar = ({ token, setToken }) => {
+  const navbarCollapseRef = useRef(null);
+
+  const handleNavLinkClick = () => {
+    const navbarCollapse = navbarCollapseRef.current;
+    if (navbarCollapse.classList.contains("show")) {
+      navbarCollapse.classList.remove("show");
+    }
+  };
 
   const logout = () => {
-    localStorage.removeItem('token')
+    localStorage.removeItem("token");
     setToken(false);
+    handleNavLinkClick();
   };
 
   return (
@@ -28,38 +37,38 @@ const Navbar = ({token,setToken}) => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent" ref={navbarCollapseRef}>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex justify-content-between w-50 me-5">
               <li className="nav-item">
-                <NavLink className="nav-link" to={"/"}>
+                <NavLink className="nav-link" to="/" onClick={handleNavLinkClick}>
                   Home
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/profile">
+                <NavLink className="nav-link" to="/profile" onClick={handleNavLinkClick}>
                   Profile
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/contact">
+                <NavLink className="nav-link" to="/contact" onClick={handleNavLinkClick}>
                   Contact Us
                 </NavLink>
               </li>
               {token ? (
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/login">
-                    <span onClick={logout}>Logout</span>
+                  <NavLink className="nav-link" to="/login" onClick={logout}>
+                    <span>Logout</span>
                   </NavLink>
                 </li>
               ) : (
                 <>
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/login">
+                    <NavLink className="nav-link" to="/login" onClick={handleNavLinkClick}>
                       Login
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/signin">
+                    <NavLink className="nav-link" to="/signin" onClick={handleNavLinkClick}>
                       SignUp
                     </NavLink>
                   </li>
