@@ -1,5 +1,5 @@
 const express = require('express');
-const cloudinary=require("cloudinary")
+const cloudinary=require("cloudinary").v2
 const authentication=require("../middleware/authentication");
 const router=express.Router()
 

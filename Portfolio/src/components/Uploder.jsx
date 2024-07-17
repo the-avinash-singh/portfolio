@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 import spinner from "../assets/spinner.svg"
+import { imageDeleteApi } from '../apis/apis'
 
 const Uploder = (props) => {
     const {user,setUser,handelSubmit}=props
@@ -22,18 +23,19 @@ const Uploder = (props) => {
 
     const uploadImage=async (files)=>{
         setLoading(true);
-        if(user.imgUrl){
-          await imageDeleteApi(user.publicUrl);
-        }
         const formData=new FormData()
         formData.append("file",files[0])
         formData.append("upload_preset","ml_default")
         formData.append('cloud_name', 'day8hsahb');
         try{
+          if(user.imgUrl){
+            await imageDeleteApi(user.publicUrl);
+          }
+          
             const response = await axios.post("https://api.cloudinary.com/v1_1/day8hsahb/image/upload",formData)
             if(response.data.secure_url){
-              alert("Image Uploded Successfull")
               await handelSubmit()
+              // alert("Image Uploded Successfull")
             }
             setUser({...user,['imgUrl']:response.data.secure_url,['publicUrl']:response.data.public_id});
         }catch (error) {

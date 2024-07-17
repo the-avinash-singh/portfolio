@@ -1,4 +1,4 @@
-const host = "https://portfolio-t4zi.onrender.com";
+const host = "http://localhost:3000";
 
 export const signinApi = async (user) => {
   try {
@@ -121,19 +121,17 @@ export const contactPostApi = async (user) => {
 
 export const imageDeleteApi = async (user) => {
   try {
-    const res = await fetch(`${host}/deleteImage`, {
+     await fetch(`${host}/deleteImage`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
         "auth-token":localStorage.getItem("token")
       },
       credentials: "include",
-      body:{
-        publicId:user.publicUrl
-      }
+      body:JSON.stringify({
+        publicId:user
+      }),
     });
-    return res.json();
-    console.log(res.json())
   } catch (err) {
     console.log(err);
   }
