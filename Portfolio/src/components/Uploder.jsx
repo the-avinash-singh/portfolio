@@ -29,6 +29,7 @@ const Uploder = (props) => {
         formData.append("file",files[0])
         formData.append("upload_preset","ml_default")
         formData.append('cloud_name', 'day8hsahb');
+        formData.append("return_delete_token", "true");
         try{
             const response = await axios.post("https://api.cloudinary.com/v1_1/day8hsahb/image/upload",formData)
             if(response.data.secure_url){
@@ -36,9 +37,10 @@ const Uploder = (props) => {
               handelSubmit()
               setLoading(false)
             }
-            setUser({...user,['imgUrl']:response.data.secure_url,['publicUrl']:response.data.public_id});
+            setUser({...user,['imgUrl']:response.data.secure_url,['publicUrl']:response.data.delete_token});
         }catch (error) {
             console.error('Error uploading image:', error);
+            alert("Failed to upload image. Please try again.");
           }
     }
   return (
