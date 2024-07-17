@@ -97,7 +97,7 @@ const About = () => {
             <div className="col-md-5 d-flex d-md-inline justify-content-center">
               <img src={user?.imgUrl?user.imgUrl:userImg} alt="User" className="about-img ms-md-5" />
             </div>
-            <div className="col-md-6 d-flex d-md-inline justify-content-center align-items-center flex-column">
+            <div className="col-md-6 mt-2 mt-md-0 d-flex d-md-inline justify-content-center align-items-center flex-column">
               <div className="fs-4">{user?.name}</div>
               <div className="text-info text-capitalize">{user?.work}</div>
               <p className="fs-6 text-dark-emphasis mt-2">
@@ -151,7 +151,7 @@ const About = () => {
               </div>
             </div>
             <div
-              className="col-md-7 ps-md-5 tab-content d-flex d-md-inline justify-content-start justify-content-md-center"
+              className="col-md-7 ps-md-5 tab-content d-flex d-md-inline justify-content-center"
               id="myTabContent"
             >
               <div

@@ -3,9 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import { editAboutApi } from "../apis/apis";
 import Uploder from "./Uploder";
 
-function EditAbout(props) {
-
-  const {user,setUser}=props
+function EditAbout({user,setUser,...props}) {
 
   const handelInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -14,13 +12,13 @@ function EditAbout(props) {
   const regex = /^(https?:\/\/[^\s,]+(,(https?:\/\/[^\s,]+)){0,2})?$/;
   const handelSubmit=async()=>{
     if(regex.test(user.links)){
-      const result=await editAboutApi(props.user,props.user._id);
+      const result=await editAboutApi(user,user._id);
       if(result.status===200){
         alert("Updated sucessfully");
         props.onHide()
       }else{
-        const result = await res.json();
-        alert(`unsuccessful: ${result.message?result.message:result.error}`)
+        const res = await result.json();
+        alert(`unsuccessful: ${res.message?res.message:res.error}`)
       }
     }else{
       alert("Please only fill 3 valid links ")
@@ -175,7 +173,7 @@ function EditAbout(props) {
         </form>
           <div className="">
             <label className="mt-4 me-4">Profile image</label>
-            <Uploder handelSubmit={handelSubmit} user={user} setUser={setUser}/>
+            <Uploder user={user} setUser={setUser} onHide={props.onHide}/>
           </div>
       </Modal.Body>
       <Modal.Footer>

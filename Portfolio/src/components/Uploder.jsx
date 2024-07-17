@@ -1,27 +1,12 @@
 import axios from 'axios'
 import { useState } from 'react'
 import spinner from "../assets/spinner.svg"
-import { imageDeleteApi } from '../apis/apis'
+import { editAboutApi, imageDeleteApi } from '../apis/apis'
 
-const Uploder = (props) => {
-    const {user,setUser,handelSubmit}=props
+const Uploder = ({user,setUser,onHide}) => {
     const [loading,setLoading]=useState(false)
-    const deletePrevImage = async (publicId) => {
-        const url = `https://api.cloudinary.com/v1_1/day8hsahb/delete_by_token`;
-    
-        try {
-          await axios.post(url, {
-            token: publicId,
-            api_key: '363248123965793',
-            api_secret: 'X1S5ZueppKFB2W-OPNZEVzWCEdg',
-          });
-          console.log('Previous image deleted successfully.');
-        } catch (error) {
-          console.error('Error deleting previous image:', error);
-        }
-      };
 
-    const uploadImage=async (files)=>{
+      const uploadImage=async (files)=>{
         setLoading(true);
         const formData=new FormData()
         formData.append("file",files[0])
@@ -31,13 +16,16 @@ const Uploder = (props) => {
           if(user.imgUrl){
             await imageDeleteApi(user.publicUrl);
           }
-          
             const response = await axios.post("https://api.cloudinary.com/v1_1/day8hsahb/image/upload",formData)
-            if(response.data.secure_url){
-              await handelSubmit()
-              // alert("Image Uploded Successfull")
+            setUser({...user,imgUrl:response.data.secure_url,publicUrl:response.data.public_id});
+            const result=await editAboutApi({...user,imgUrl:response.data.secure_url,publicUrl:response.data.public_id},user._id)
+            if(result.status===200){
+              alert("Profile Picture Updated sucessfully");
+              onHide()
+            }else{
+              const res = await result.json();
+              alert(`unsuccessful: ${res.message?res.message:res.error}`)
             }
-            setUser({...user,['imgUrl']:response.data.secure_url,['publicUrl']:response.data.public_id});
         }catch (error) {
             console.error('Error uploading image:', error);
             alert("Failed to upload image. Please try again.");
