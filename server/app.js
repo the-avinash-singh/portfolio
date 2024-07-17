@@ -4,6 +4,7 @@ require("dotenv").config()
 var cors = require('cors')
 const auth=require("./router/auth")
 const data=require("./router/data")
+const image=require("./router/image")
 const welcome=require("./router/welcome")
 
 const app=express();
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use(welcome);
 app.use(auth)
 app.use(data)
+app.use(image)
 
 const port=process.env.PORT||2000
 

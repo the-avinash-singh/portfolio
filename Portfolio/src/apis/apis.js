@@ -118,3 +118,23 @@ export const contactPostApi = async (user) => {
     console.log(err);
   }
 };
+
+export const imageDeleteApi = async (user) => {
+  try {
+    const res = await fetch(`${host}/deleteImage`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":localStorage.getItem("token")
+      },
+      credentials: "include",
+      body:{
+        publicId:user.publicUrl
+      }
+    });
+    return res.json();
+    console.log(res.json())
+  } catch (err) {
+    console.log(err);
+  }
+};
