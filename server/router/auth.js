@@ -53,7 +53,6 @@ router.post("/login",async(req,res)=>{
         if(!compareResult){
             return res.status(409).json({message:"invalid email or password"});
         }
-        console.log(user)
         const payload={
             user:{
                 id:user.id
