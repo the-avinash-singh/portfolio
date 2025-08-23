@@ -21,7 +21,7 @@ const Login = ({setToken}) => {
     e.preventDefault();
     const res = await loginApi(user);
     if (res.status == 200) {
-      navigate("/profile");
+      navigate("/profile",{replace:true});
       setToken(true)
       const result = await res.json();
         localStorage.setItem("token",result.token);
