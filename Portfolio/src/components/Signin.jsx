@@ -156,6 +156,7 @@ const Signin = ({setToken}) => {
                   id="signup"
                   className="btn mx-auto mx-lg-0 text-white fw-bolder px-3 btn-outline-none btn-info"
                   value={`${loading?'sigining Up...':'SignUp'}`}
+                  disabled={loading}
                   onClick={apiCall}
                 />
                 <span className="fs-6 mb-3 d-lg-none text-center">
