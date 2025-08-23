@@ -12,23 +12,28 @@ const Login = ({setToken}) => {
     email: "",
     password: "",
   });
+  const [loading,setLoading]=useState(false)
 
   const handelInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const apiCall = async (e) => {
+    setLoading(true)
     e.preventDefault();
     const res = await loginApi(user);
     if (res.status == 200) {
-      navigate("/profile",{replace:true});
-      setToken(true)
       const result = await res.json();
-        localStorage.setItem("token",result.token);
+      localStorage.setItem("token",result.token);
+      navigate("/profile",{
+        replace:true
+      });
+      setToken(true)
     } else {
       const result = await res.json();
       alert(`unsuccessful: ${result.message?result.message:result.error}`)
     }
+    setLoading(false)
   };
   return (
     <>
@@ -80,8 +85,9 @@ const Login = ({setToken}) => {
                     name="login"
                     id="login"
                     className="btn text-white fw-bolder mx-auto mx-lg-0 px-3 btn-outline-none btn-info"
-                    value="Log in"
+                    value={`${loading?'Logging in...':'Login'}`}
                     onClick={apiCall}
+                    disabled={loading}
                   />
                   <span className="fs-6 mb-3 d-lg-none text-center">
                     Don't have an account?{" "}

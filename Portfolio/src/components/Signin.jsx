@@ -19,27 +19,32 @@ const Signin = ({setToken}) => {
     cpassword: "",
   });
   const [match, setMatch] = useState(true);
+  const [loading,setLoading]=useState(false)
 
   const handelInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const apiCall = async (e) => {
+    setLoading(true)
     e.preventDefault();
     setMatch(false);
     if (user.password === user.cpassword) {
       setMatch(true);
       const res = await signinApi(user);
       if (res.status == 201) {
-        navigate("/");
-        setToken(true)
         const result = await res.json();
         localStorage.setItem("token",result.token);
+        navigate("/profile",{
+          replace:true
+        });
+        setToken(true)
       } else {
         const result = await res.json();
         alert(`unsuccessful: ${result.message?result.message:result.error}`)
       }
     }
+    setLoading(false)
   };
 
   return (
@@ -150,7 +155,7 @@ const Signin = ({setToken}) => {
                   name="signup"
                   id="signup"
                   className="btn mx-auto mx-lg-0 text-white fw-bolder px-3 btn-outline-none btn-info"
-                  value="SignUp"
+                  value={`${loading?'sigining Up...':'SignUp'}`}
                   onClick={apiCall}
                 />
                 <span className="fs-6 mb-3 d-lg-none text-center">
